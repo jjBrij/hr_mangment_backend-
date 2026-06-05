@@ -3,62 +3,44 @@ from django.db import models
 from apps.accounts.models import User
 
 class Employee(models.Model):
-    GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('O', 'Other'),
-    )
-    
-    BLOOD_GROUP_CHOICES = (
-        ('A+', 'A+'), ('A-', 'A-'),
-        ('B+', 'B+'), ('B-', 'B-'),
-        ('O+', 'O+'), ('O-', 'O-'),
-        ('AB+', 'AB+'), ('AB-', 'AB-'),
-    )
-    
-    MARITAL_STATUS = (
-        ('Single', 'Single'),
-        ('Married', 'Married'),
-        ('Divorced', 'Divorced'),
-        ('Widowed', 'Widowed'),
-    )
-    
-    DEPARTMENT_CHOICES = (
-        ('Engineering', 'Engineering'),
-        ('HR', 'Human Resources'),
-        ('Finance', 'Finance'),
-        ('Marketing', 'Marketing'),
-        ('Sales', 'Sales'),
-        ('Operations', 'Operations'),
-    )
-    
-    EMPLOYMENT_TYPE = (
+    # Employment Information
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='employee_profile')
+    employee_id = models.CharField(max_length=20, unique=True)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15, blank=True)
+    department = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
+    employment_type = models.CharField(max_length=50, choices=[
         ('Full-time', 'Full-time'),
         ('Part-time', 'Part-time'),
         ('Contract', 'Contract'),
         ('Internship', 'Internship'),
-    )
-    
-    STATUS_CHOICES = (
+    ], default='Full-time')
+    joining_date = models.DateField()
+    status = models.CharField(max_length=50, choices=[
         ('Active', 'Active'),
         ('On Leave', 'On Leave'),
         ('Resigned', 'Resigned'),
         ('Terminated', 'Terminated'),
-    )
-    
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='employee_profile')
-    employee_id = models.CharField(max_length=20, unique=True)
-    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES)
-    position = models.CharField(max_length=100)
-    employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE, default='Full-time')
-    joining_date = models.DateField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Active')
+    ], default='Active')
     
     # Personal Information
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
-    blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP_CHOICES, blank=True)
-    marital_status = models.CharField(max_length=20, choices=MARITAL_STATUS, blank=True)
+    gender = models.CharField(max_length=10, blank=True, null=True)
+    blood_group = models.CharField(max_length=5, blank=True, null=True)
+    marital_status = models.CharField(max_length=20, blank=True, null=True)
     nationality = models.CharField(max_length=50, default='Indian')
+    date_of_birth = models.DateField(null=True, blank=True)
+    
+    # Contact Information
+    phone = models.CharField(max_length=15, blank=True)
+    email = models.EmailField()
+    emergency_contact_name = models.CharField(max_length=100, blank=True)
+    emergency_contact_relation = models.CharField(max_length=50, blank=True)
+    emergency_contact_number = models.CharField(max_length=15, blank=True)
+    
+    # Address
+    current_address = models.TextField(blank=True)
+    permanent_address = models.TextField(blank=True)
     
     # Family Information
     father_name = models.CharField(max_length=100, blank=True)
@@ -68,15 +50,6 @@ class Employee(models.Model):
     spouse_name = models.CharField(max_length=100, blank=True)
     spouse_contact = models.CharField(max_length=15, blank=True)
     
-    # Address
-    current_address = models.TextField(blank=True)
-    permanent_address = models.TextField(blank=True)
-    
-    # Emergency Contact
-    emergency_contact_name = models.CharField(max_length=100, blank=True)
-    emergency_contact_relation = models.CharField(max_length=50, blank=True)
-    emergency_contact_number = models.CharField(max_length=15, blank=True)
-    
     # Work Information
     work_location = models.CharField(max_length=100, blank=True)
     reporting_manager = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
@@ -85,7 +58,7 @@ class Employee(models.Model):
     basic_salary = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     current_salary = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     previous_company = models.CharField(max_length=100, blank=True)
-    previous_salary = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    previous_salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     
     # Bank Information
     bank_name = models.CharField(max_length=100, blank=True)
@@ -98,6 +71,11 @@ class Employee(models.Model):
     pan_card = models.FileField(upload_to='documents/pan/', blank=True, null=True)
     passport_photo = models.ImageField(upload_to='photos/', blank=True, null=True)
     resume = models.FileField(upload_to='documents/resume/', blank=True, null=True)
+
+    # Job Information
+    department = models.CharField(max_length=100, blank=True)
+    position = models.CharField(max_length=100, blank=True)
+
     
     # Educational Documents
     tenth_marksheet = models.FileField(upload_to='documents/education/', blank=True, null=True)

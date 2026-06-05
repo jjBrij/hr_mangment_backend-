@@ -1,0 +1,840 @@
+INFO 2026-06-05 14:08:56,025 log 5448 6816 "GET /admin/accounts/user/add/ HTTP/1.1" 200 16406
+INFO 2026-06-05 14:08:57,123 log 5448 6816 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:09:41,258 log 5448 6816 "POST /admin/accounts/user/add/ HTTP/1.1" 302 0
+INFO 2026-06-05 14:09:41,589 log 5448 6816 "GET /admin/accounts/user/15/change/ HTTP/1.1" 200 27402
+INFO 2026-06-05 14:09:43,989 log 5448 6816 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:10:12,507 log 5448 6816 "GET /admin/accounts/user/ HTTP/1.1" 200 14973
+INFO 2026-06-05 14:10:13,674 log 5448 6816 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:11:16,336 log 5448 6204 "POST /api/auth/login/ HTTP/1.1" 200 676
+INFO 2026-06-05 14:11:45,648 log 5448 6204 "POST /api/auth/login/ HTTP/1.1" 200 676
+WARNING 2026-06-05 14:12:13,420 log 5448 6204 Forbidden: /api/employees/
+WARNING 2026-06-05 14:12:13,421 log 5448 6204 "POST /api/employees/ HTTP/1.1" 403 63
+INFO 2026-06-05 14:12:47,502 log 5448 6816 "GET /admin/accounts/user/add/ HTTP/1.1" 200 16406
+INFO 2026-06-05 14:12:48,789 log 5448 6816 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+ERROR 2026-06-05 14:13:53,002 log 5448 6816 Internal Server Error: /admin/accounts/user/add/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 710, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\sites.py", line 247, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 119, in add_view
+    return self._add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 147, in _add_view
+    return super().add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1942, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1801, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1852, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\accounts\admin.py", line 55, in save_model
+    super().save_model(request, obj, form, change)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1272, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\base_user.py", line 62, in save
+    super().save(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+ERROR 2026-06-05 14:13:53,016 log 5448 6816 "POST /admin/accounts/user/add/ HTTP/1.1" 500 258819
+INFO 2026-06-05 14:14:12,941 log 5448 6816 "GET /admin/accounts/user/add/ HTTP/1.1" 200 16406
+ERROR 2026-06-05 14:14:36,606 log 5448 6816 Internal Server Error: /admin/accounts/user/add/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 710, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\sites.py", line 247, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 119, in add_view
+    return self._add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 147, in _add_view
+    return super().add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1942, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1801, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1852, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\accounts\admin.py", line 55, in save_model
+    super().save_model(request, obj, form, change)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1272, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\base_user.py", line 62, in save
+    super().save(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+ERROR 2026-06-05 14:14:36,618 log 5448 6816 "POST /admin/accounts/user/add/ HTTP/1.1" 500 258855
+INFO 2026-06-05 14:15:32,977 log 5448 6816 "GET /admin/accounts/user/add/ HTTP/1.1" 200 16406
+ERROR 2026-06-05 14:16:11,950 log 5448 6816 Internal Server Error: /admin/accounts/user/add/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 710, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\sites.py", line 247, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 119, in add_view
+    return self._add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 147, in _add_view
+    return super().add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1942, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1801, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1852, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\accounts\admin.py", line 55, in save_model
+    super().save_model(request, obj, form, change)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1272, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\base_user.py", line 62, in save
+    super().save(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+ERROR 2026-06-05 14:16:11,957 log 5448 6816 "POST /admin/accounts/user/add/ HTTP/1.1" 500 258819
+INFO 2026-06-05 14:16:19,288 log 5448 6816 "GET /admin/accounts/user/add/ HTTP/1.1" 200 16406
+INFO 2026-06-05 14:16:52,905 log 5448 6816 "POST /admin/accounts/user/add/ HTTP/1.1" 200 16740
+INFO 2026-06-05 14:16:53,492 log 5448 6816 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:17:39,142 log 5448 6816 "POST /admin/accounts/user/add/ HTTP/1.1" 200 16713
+INFO 2026-06-05 14:17:39,771 log 5448 6816 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+ERROR 2026-06-05 14:17:57,165 log 5448 6816 Internal Server Error: /admin/accounts/user/add/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 710, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\sites.py", line 247, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 119, in add_view
+    return self._add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\admin.py", line 147, in _add_view
+    return super().add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1942, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1801, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1852, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\accounts\admin.py", line 55, in save_model
+    super().save_model(request, obj, form, change)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\admin\options.py", line 1272, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\contrib\auth\base_user.py", line 62, in save
+    super().save(**kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 874, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 966, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, insert_fields, returning_fields, raw
+    )
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\base.py", line 1220, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\query.py", line 1918, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\models\sql\compiler.py", line 1925, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "users_username_key"
+DETAIL:  Key (username)=() already exists.
+
+ERROR 2026-06-05 14:17:57,172 log 5448 6816 "POST /admin/accounts/user/add/ HTTP/1.1" 500 258912
+INFO 2026-06-05 14:26:57,120 autoreload 12660 3628 Watching for file changes with StatReloader
+INFO 2026-06-05 14:27:09,071 log 12660 7288 "POST /admin/accounts/user/add/ HTTP/1.1" 200 16740
+INFO 2026-06-05 14:27:10,552 log 12660 7288 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:27:15,248 log 12660 7288 "GET /admin/ HTTP/1.1" 200 9302
+INFO 2026-06-05 14:27:18,054 log 12660 7288 "GET /admin/accounts/user/ HTTP/1.1" 200 14973
+INFO 2026-06-05 14:27:18,706 log 12660 7288 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:29:29,507 log 12660 7288 "GET /admin/accounts/user/ HTTP/1.1" 200 14301
+INFO 2026-06-05 14:29:30,650 log 12660 7288 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:29:42,951 log 12660 7288 "GET /admin/accounts/user/add/ HTTP/1.1" 200 16406
+INFO 2026-06-05 14:29:50,549 log 12660 7288 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:30:27,150 log 12660 7288 "POST /admin/accounts/user/add/ HTTP/1.1" 302 0
+INFO 2026-06-05 14:30:27,927 log 12660 7288 "GET /admin/accounts/user/20/change/ HTTP/1.1" 200 27462
+INFO 2026-06-05 14:30:28,940 log 12660 7288 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:30:34,652 log 12660 7288 "GET /admin/accounts/user/ HTTP/1.1" 200 14933
+INFO 2026-06-05 14:30:35,350 log 12660 7288 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-06-05 14:31:57,639 log 12660 5212 "POST /api/auth/login/ HTTP/1.1" 200 685
+WARNING 2026-06-05 14:32:39,521 log 12660 5212 Bad Request: /api/employees/
+WARNING 2026-06-05 14:32:39,521 log 12660 5212 "POST /api/employees/ HTTP/1.1" 400 278
+WARNING 2026-06-05 14:36:57,580 log 12660 3228 Bad Request: /api/employees/
+WARNING 2026-06-05 14:36:57,580 log 12660 3228 "POST /api/employees/ HTTP/1.1" 400 308
+ERROR 2026-06-05 14:38:02,004 log 12660 3228 Internal Server Error: /api/employees/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 437, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 104, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Employee' object has no attribute 'full_name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 525, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 470, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `fullName` on serializer `EmployeeCreateSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Employee` instance.
+Original exception text was: 'Employee' object has no attribute 'full_name'.
+ERROR 2026-06-05 14:38:02,013 log 12660 3228 "POST /api/employees/ HTTP/1.1" 500 139313
+INFO 2026-06-05 15:12:32,790 autoreload 12660 3628 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\employees\serializers.py changed, reloading.
+INFO 2026-06-05 15:12:34,592 autoreload 9644 5028 Watching for file changes with StatReloader
+INFO 2026-06-05 15:15:00,201 autoreload 9644 5028 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\employees\serializers.py changed, reloading.
+INFO 2026-06-05 15:15:03,172 autoreload 12864 4528 Watching for file changes with StatReloader
+WARNING 2026-06-05 15:15:25,342 log 12864 7316 Bad Request: /api/employees/
+WARNING 2026-06-05 15:15:25,343 log 12864 7316 "POST /api/employees/ HTTP/1.1" 400 85
+INFO 2026-06-05 15:16:15,606 log 12864 6648 "GET /admin/accounts/user/ HTTP/1.1" 200 15560
+ERROR 2026-06-05 15:16:57,043 log 12864 12384 Internal Server Error: /api/employees/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 437, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 104, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Employee' object has no attribute 'designation'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 525, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 470, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `designation` on serializer `EmployeeCreateSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Employee` instance.
+Original exception text was: 'Employee' object has no attribute 'designation'.
+ERROR 2026-06-05 15:16:57,049 log 12864 12384 "POST /api/employees/ HTTP/1.1" 500 137859
+INFO 2026-06-05 15:21:26,325 autoreload 2192 11084 Watching for file changes with StatReloader
+WARNING 2026-06-05 15:21:35,659 log 2192 7768 Bad Request: /api/employees/
+WARNING 2026-06-05 15:21:35,660 log 2192 7768 "POST /api/employees/ HTTP/1.1" 400 86
+WARNING 2026-06-05 15:22:21,226 log 2192 7768 Bad Request: /api/employees/
+WARNING 2026-06-05 15:22:21,227 log 2192 7768 "POST /api/employees/ HTTP/1.1" 400 34
+ERROR 2026-06-05 15:22:59,971 log 2192 7768 Internal Server Error: /api/employees/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 437, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 104, in get_attribute
+    instance = getattr(instance, attr)
+AttributeError: 'Employee' object has no attribute 'designation'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\mixins.py", line 20, in create
+    headers = self.get_success_headers(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 525, in to_representation
+    attribute = field.get_attribute(instance)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\fields.py", line 470, in get_attribute
+    raise type(exc)(msg)
+AttributeError: Got AttributeError when attempting to get a value for field `designation` on serializer `EmployeeCreateSerializer`.
+The serializer field might be named incorrectly and not match any attribute or key on the `Employee` instance.
+Original exception text was: 'Employee' object has no attribute 'designation'.
+ERROR 2026-06-05 15:22:59,978 log 2192 7768 "POST /api/employees/ HTTP/1.1" 500 137867
+INFO 2026-06-05 15:24:00,800 autoreload 2192 11084 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\employees\serializers.py changed, reloading.
+INFO 2026-06-05 15:24:03,151 autoreload 12292 9788 Watching for file changes with StatReloader
+WARNING 2026-06-05 15:24:29,817 log 12292 8048 Bad Request: /api/employees/
+WARNING 2026-06-05 15:24:29,818 log 12292 8048 "POST /api/employees/ HTTP/1.1" 400 87
+WARNING 2026-06-05 15:25:50,090 log 12292 8784 Bad Request: /api/employees/
+WARNING 2026-06-05 15:25:50,090 log 12292 8784 "POST /api/employees/ HTTP/1.1" 400 34
+INFO 2026-06-05 15:26:20,103 log 12292 8784 "POST /api/employees/ HTTP/1.1" 201 204
+WARNING 2026-06-05 15:28:01,360 log 12292 1504 Method Not Allowed: /api/employees/me/
+WARNING 2026-06-05 15:28:01,361 log 12292 1504 "POST /api/employees/me/ HTTP/1.1" 405 41
+WARNING 2026-06-05 15:28:08,773 log 12292 1504 Not Found: /api/employees/me/
+WARNING 2026-06-05 15:28:08,773 log 12292 1504 "GET /api/employees/me/ HTTP/1.1" 404 38
+WARNING 2026-06-05 15:28:50,484 log 12292 1504 Method Not Allowed: /api/auth/login/
+WARNING 2026-06-05 15:28:50,485 log 12292 1504 "GET /api/auth/login/ HTTP/1.1" 405 40
+WARNING 2026-06-05 15:29:18,929 log 12292 1504 Bad Request: /api/auth/login/
+WARNING 2026-06-05 15:29:18,931 log 12292 1504 "POST /api/auth/login/ HTTP/1.1" 400 78
+INFO 2026-06-05 15:30:23,128 log 12292 11044 "POST /api/auth/login/ HTTP/1.1" 200 682
+INFO 2026-06-05 15:30:47,613 log 12292 11044 "POST /api/auth/login/ HTTP/1.1" 200 682
+WARNING 2026-06-05 15:31:04,358 log 12292 11044 Method Not Allowed: /api/employees/me/
+WARNING 2026-06-05 15:31:04,359 log 12292 11044 "POST /api/employees/me/ HTTP/1.1" 405 41
+INFO 2026-06-05 15:31:11,488 log 12292 11044 "GET /api/employees/me/ HTTP/1.1" 200 1074
+INFO 2026-06-05 15:31:41,950 log 12292 11044 "GET /api/employees/stats/ HTTP/1.1" 200 67
+INFO 2026-06-05 15:32:07,685 log 12292 11044 "GET /api/employees/1/documents/ HTTP/1.1" 200 93
+INFO 2026-06-05 15:32:22,921 log 12292 11044 "GET /api/employees/1/ HTTP/1.1" 200 1066
+INFO 2026-06-05 15:33:17,630 log 12292 11044 "GET /api/employees/1/ HTTP/1.1" 200 1066
+INFO 2026-06-05 15:33:32,092 log 12292 11044 "GET /api/employees/1/ HTTP/1.1" 200 1066
+INFO 2026-06-05 15:34:12,916 log 12292 11044 "GET /api/employees/me/ HTTP/1.1" 200 1074
+INFO 2026-06-05 15:48:20,916 autoreload 12292 9788 C:\Users\brijm\Desktop\Hr project django\hrms_backend\hrms_backend\urls.py changed, reloading.
+INFO 2026-06-05 15:48:22,672 autoreload 5628 8592 Watching for file changes with StatReloader
+INFO 2026-06-05 15:48:36,694 autoreload 5628 8592 C:\Users\brijm\Desktop\Hr project django\hrms_backend\hrms_backend\settings.py changed, reloading.
+INFO 2026-06-05 15:48:38,246 autoreload 11012 5536 Watching for file changes with StatReloader
+INFO 2026-06-05 15:49:06,610 autoreload 11012 5536 C:\Users\brijm\Desktop\Hr project django\hrms_backend\hrms_backend\settings.py changed, reloading.
+INFO 2026-06-05 15:49:08,026 autoreload 3348 11512 Watching for file changes with StatReloader
+INFO 2026-06-05 15:49:55,341 autoreload 3348 11512 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py changed, reloading.
+INFO 2026-06-05 15:49:57,612 autoreload 10660 11060 Watching for file changes with StatReloader
+INFO 2026-06-05 15:58:03,322 autoreload 10660 11060 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py changed, reloading.
+INFO 2026-06-05 15:58:05,009 autoreload 10876 5556 Watching for file changes with StatReloader
+INFO 2026-06-05 15:58:56,887 autoreload 10876 5556 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\serializers.py changed, reloading.
+INFO 2026-06-05 15:58:58,702 autoreload 8384 2204 Watching for file changes with StatReloader
+INFO 2026-06-05 15:59:17,707 autoreload 8384 2204 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\views.py changed, reloading.
+INFO 2026-06-05 15:59:19,939 autoreload 11392 1560 Watching for file changes with StatReloader
+INFO 2026-06-05 15:59:29,584 autoreload 11392 1560 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\views.py changed, reloading.
+INFO 2026-06-05 15:59:30,955 autoreload 980 5864 Watching for file changes with StatReloader
+INFO 2026-06-05 16:14:49,444 autoreload 10852 712 Watching for file changes with StatReloader
+INFO 2026-06-05 16:15:09,422 autoreload 10852 712 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\accounts\urls.py changed, reloading.
+INFO 2026-06-05 16:15:11,422 autoreload 6468 1556 Watching for file changes with StatReloader
+INFO 2026-06-05 16:49:44,101 autoreload 8708 4300 Watching for file changes with StatReloader
+INFO 2026-06-05 16:51:09,517 log 8708 9112 "GET /admin/accounts/user/ HTTP/1.1" 200 18899
+WARNING 2026-06-05 16:53:36,573 log 8708 8208 Not Found: /api/performance/target/
+WARNING 2026-06-05 16:53:36,574 log 8708 8208 "GET /api/performance/target/ HTTP/1.1" 404 4746
+INFO 2026-06-05 17:13:40,087 autoreload 8708 4300 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\admin.py changed, reloading.
+INFO 2026-06-05 17:13:42,044 autoreload 9204 9776 Watching for file changes with StatReloader
+INFO 2026-06-05 17:13:58,029 autoreload 9204 9776 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\urls.py changed, reloading.
+INFO 2026-06-05 17:13:59,478 autoreload 6600 11072 Watching for file changes with StatReloader
+INFO 2026-06-05 17:14:22,855 autoreload 6600 11072 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\views.py changed, reloading.
+INFO 2026-06-05 17:14:24,569 autoreload 3700 6044 Watching for file changes with StatReloader
+INFO 2026-06-05 17:14:46,447 autoreload 3700 6044 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py changed, reloading.
+INFO 2026-06-05 17:14:48,016 autoreload 8540 1080 Watching for file changes with StatReloader
+INFO 2026-06-05 17:14:59,197 autoreload 8540 1080 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py changed, reloading.
+INFO 2026-06-05 17:15:00,388 autoreload 9920 4780 Watching for file changes with StatReloader
+INFO 2026-06-05 17:33:27,284 autoreload 5716 60 Watching for file changes with StatReloader
+WARNING 2026-06-05 17:33:28,321 log 5716 2348 Unauthorized: /api/performance/targets/
+WARNING 2026-06-05 17:33:28,322 log 5716 2348 "GET /api/performance/targets/ HTTP/1.1" 401 172
+WARNING 2026-06-05 17:33:33,270 log 5716 2348 Unauthorized: /api/performance/targets/
+WARNING 2026-06-05 17:33:33,273 log 5716 2348 "GET /api/performance/targets/ HTTP/1.1" 401 172
+WARNING 2026-06-05 17:34:03,669 log 5716 2348 Unauthorized: /api/auth/login/
+WARNING 2026-06-05 17:34:03,669 log 5716 2348 "GET /api/auth/login/ HTTP/1.1" 401 172
+WARNING 2026-06-05 17:34:20,410 log 5716 2348 Bad Request: /api/auth/login/
+WARNING 2026-06-05 17:34:20,411 log 5716 2348 "POST /api/auth/login/ HTTP/1.1" 400 78
+INFO 2026-06-05 17:36:16,869 log 5716 5956 "POST /api/auth/login/ HTTP/1.1" 200 685
+INFO 2026-06-05 17:36:43,432 log 5716 5956 "POST /api/auth/login/ HTTP/1.1" 200 685
+WARNING 2026-06-05 17:38:10,869 log 5716 9156 Not Found: /api/performance/target/
+WARNING 2026-06-05 17:38:10,869 log 5716 9156 "POST /api/performance/target/ HTTP/1.1" 404 6951
+WARNING 2026-06-05 17:38:40,009 log 5716 9156 Bad Request: /api/performance/targets/
+WARNING 2026-06-05 17:38:40,010 log 5716 9156 "POST /api/performance/targets/ HTTP/1.1" 400 111
+WARNING 2026-06-05 17:40:55,624 log 5716 11888 Bad Request: /api/performance/targets/
+WARNING 2026-06-05 17:40:55,625 log 5716 11888 "POST /api/performance/targets/ HTTP/1.1" 400 65
+WARNING 2026-06-05 17:42:53,739 log 5716 2236 Bad Request: /api/performance/targets/
+WARNING 2026-06-05 17:42:53,740 log 5716 2236 "POST /api/performance/targets/ HTTP/1.1" 400 65
+INFO 2026-06-05 17:43:09,637 log 5716 2236 "POST /api/performance/targets/ HTTP/1.1" 201 480
+ERROR 2026-06-05 17:43:57,095 log 5716 2236 Internal Server Error: /api/performance/targets/1/
+Traceback (most recent call last):
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\mixins.py", line 68, in update
+    self.perform_update(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\mixins.py", line 78, in perform_update
+    serializer.save()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 203, in save
+    self.instance = self.update(self.instance, validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\brijm\AppData\Roaming\Python\Python314\site-packages\rest_framework\serializers.py", line 1033, in update
+    instance.save()
+    ~~~~~~~~~~~~~^^
+  File "C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py", line 27, in save
+    self.performance_score = (self.attendance * 0.4 + self.project_completion * 0.4 + self.task_efficiency * 0.2)
+                              ~~~~~~~~~~~~~~~~^~~~~
+TypeError: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+ERROR 2026-06-05 17:43:57,101 log 5716 2236 "PUT /api/performance/targets/1/ HTTP/1.1" 500 127853
+INFO 2026-06-05 18:04:02,378 autoreload 5716 60 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py changed, reloading.
+INFO 2026-06-05 18:04:04,081 autoreload 7976 7036 Watching for file changes with StatReloader
+INFO 2026-06-05 18:04:10,861 autoreload 7976 7036 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py changed, reloading.
+INFO 2026-06-05 18:04:12,497 autoreload 9636 3132 Watching for file changes with StatReloader
+INFO 2026-06-05 18:04:25,240 log 9636 5624 "PUT /api/performance/targets/1/ HTTP/1.1" 200 480
+INFO 2026-06-05 18:05:37,871 log 9636 11844 "DELETE /api/performance/targets/1/ HTTP/1.1" 204 0
+INFO 2026-06-05 18:06:02,140 log 9636 11844 "GET /api/performance/targets/ HTTP/1.1" 200 52
+INFO 2026-06-05 18:06:24,082 log 9636 11844 "POST /api/performance/targets/ HTTP/1.1" 201 480
+WARNING 2026-06-05 18:06:53,084 log 9636 11844 Bad Request: /api/performance/daily/
+WARNING 2026-06-05 18:06:53,084 log 9636 11844 "POST /api/performance/daily/ HTTP/1.1" 400 36
+WARNING 2026-06-05 18:07:21,793 log 9636 11844 Bad Request: /api/performance/daily/
+WARNING 2026-06-05 18:07:21,794 log 9636 11844 "POST /api/performance/daily/ HTTP/1.1" 400 120
+INFO 2026-06-05 18:08:19,812 log 9636 11844 "POST /api/performance/daily/ HTTP/1.1" 201 245
+INFO 2026-06-05 18:08:50,709 log 9636 11844 "GET /api/performance/daily/ HTTP/1.1" 200 297
+INFO 2026-06-05 18:09:33,744 log 9636 11844 "GET /api/performance/daily/my_targets HTTP/1.1" 301 0
+INFO 2026-06-05 18:09:33,888 log 9636 11844 "GET /api/performance/daily/my_targets/ HTTP/1.1" 200 2
+WARNING 2026-06-05 18:10:02,907 log 9636 11844 Not Found: /api/performance/review/
+WARNING 2026-06-05 18:10:02,908 log 9636 11844 "GET /api/performance/review/ HTTP/1.1" 404 6950
+WARNING 2026-06-05 18:11:59,730 log 9636 8856 Not Found: /api/performance/review/22/
+WARNING 2026-06-05 18:11:59,731 log 9636 8856 "GET /api/performance/review/22/ HTTP/1.1" 404 6959
+INFO 2026-06-05 18:12:18,129 autoreload 9636 3132 C:\Users\brijm\Desktop\Hr project django\hrms_backend\apps\performance\models.py changed, reloading.
+INFO 2026-06-05 18:12:19,466 autoreload 7080 3668 Watching for file changes with StatReloader
