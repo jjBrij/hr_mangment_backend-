@@ -1,5 +1,5 @@
-# apps/employees/views.py
 from rest_framework import viewsets, status, permissions
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
@@ -18,13 +18,21 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     search_fields = ['employee_id', 'user__first_name', 'user__last_name', 'user__email']
     ordering_fields = ['joining_date', 'employee_id']
     ordering = ['-created_at']
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.role == 'employee':
+            return Employee.objects.filter(user=user)
+
+        return Employee.objects.all()
     
     def get_permissions(self):
         """Set permissions based on action"""
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             permission_classes = [permissions.IsAuthenticated, IsAdminOrHRManager]
         elif self.action == 'list':
-            permission_classes = [permissions.IsAuthenticated, IsAdminOrHRManager]
+            permission_classes = [permissions.IsAuthenticated]
         else:
             permission_classes = [permissions.IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -85,3 +93,15 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             'on_leave': on_leave,
             'departments': departments
         })
+# apps/employees/views.py - Add this view for fetching employee by ID
+class EmployeeDetailView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get(self, request, pk):
+        try:
+            employee = Employee.objects.get(pk=pk)
+            serializer = EmployeeDetailSerializer(employee)
+            return Response(serializer.data)
+        except Employee.DoesNotExist:
+            return Response({'error': 'Employee not found'}, status=404)    
+    

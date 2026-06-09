@@ -12,6 +12,8 @@ from .serializers import (
     PerformanceTargetSerializer, DailyTargetSerializer, PerformanceReviewSerializer
 )
 from apps.accounts.permissions import IsAdminOrHRManager
+from datetime import datetime
+from calendar import monthrange
 
 
 class PerformanceTargetViewSet(viewsets.ModelViewSet):
@@ -22,6 +24,48 @@ class PerformanceTargetViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [permissions.IsAuthenticated(), IsAdminOrHRManager()]
         return [permissions.IsAuthenticated()]
+    
+    @action(detail=False, methods=['get'])
+    def my_target(self, request):
+        month = request.query_params.get(
+            'month',
+            datetime.now().strftime('%Y-%m')
+        )
+
+        target = PerformanceTarget.objects.filter(
+            employee=request.user,
+            month=month
+        ).first()
+
+        if not target:
+            return Response({})
+
+        serializer = self.get_serializer(target)
+
+        return Response(serializer.data)
+    
+    @action(detail=False, methods=['post'])
+    def create_month_targets(self, request):
+
+        month = request.data.get('month')
+
+        year, month_num = map(int, month.split('-'))
+
+        _, last_day = monthrange(year, month_num)
+
+        for day in range(1, last_day + 1):
+            date = datetime(year, month_num, day).date()
+
+            DailyTarget.objects.get_or_create(
+                employee=request.user,
+                date=date,
+                defaults={
+                    'completed_amount': 0,
+                    'tasks': []
+                }
+            )
+
+        return Response({'success': True})
     
     @action(detail=False, methods=['get'])
     def stats(self, request):
@@ -102,11 +146,75 @@ class PerformanceTargetViewSet(viewsets.ModelViewSet):
             return employee.employee_profile.department
         except:
             return ''
+        
+    @action(detail=False, methods=['put'], url_path='update-by-employee-month')
+    def update_by_employee_month(self, request):
+        """Update target using employee_id and month instead of ID"""
+        employee_id = request.data.get('employee_id')
+        month = request.data.get('month')
 
+        try:
+            target = PerformanceTarget.objects.get(
+                employee__employee_id=employee_id,
+                month=month
+            )
+            serializer = self.get_serializer(target, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+        except PerformanceTarget.DoesNotExist:
+            return Response({'error': 'Target not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    @action(detail=False, methods=['delete'], url_path='delete-by-employee-month')
+    def delete_by_employee_month(self, request):
+        employee_id = request.query_params.get('employee_id')
+        month = request.query_params.get('month')
+
+        print("DELETE employee_id:", employee_id)
+        print("DELETE month:", month)
+
+        try:
+            target = PerformanceTarget.objects.get(
+                employee__employee_id=employee_id,
+                month=month
+            )
+
+            print("FOUND TARGET:", target.id)
+
+            target.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        except PerformanceTarget.DoesNotExist:
+            print("TARGET NOT FOUND")
+            return Response(
+                {'error': 'Target not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
 
 class DailyTargetViewSet(viewsets.ModelViewSet):
     queryset = DailyTarget.objects.all()
     serializer_class = DailyTargetSerializer
+
+    @action(detail=False, methods=['post'])
+    def create_today_target(self, request):
+        month = request.data.get('month')
+
+        year, month_num = map(int, month.split('-'))
+
+        today = timezone.now().date()
+
+        target, created = DailyTarget.objects.get_or_create(
+            employee=request.user,
+            date=today,
+            defaults={
+                'completed_amount': 0,
+                'tasks': []
+            }
+        )
+
+        serializer = self.get_serializer(target)
+
+        return Response(serializer.data)
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
@@ -114,10 +222,30 @@ class DailyTargetViewSet(viewsets.ModelViewSet):
         return [permissions.IsAuthenticated()]
     
     def get_queryset(self):
+        queryset = DailyTarget.objects.all()
+
+        employee_id = self.request.query_params.get('employee_id')
+        month = self.request.query_params.get('month')
+
+        if employee_id:
+            queryset = queryset.filter(
+                employee__employee_id=employee_id
+            )
+
+        if month:
+            year, month_num = month.split('-')
+
+            queryset = queryset.filter(
+                date__year=year,
+                date__month=month_num
+            )
+
         user = self.request.user
+
         if user.role == 'employee':
-            return DailyTarget.objects.filter(employee=user)
-        return DailyTarget.objects.all()
+            queryset = queryset.filter(employee=user)
+
+        return queryset
     
     @action(detail=False, methods=['get'])
     def my_targets(self, request):

@@ -2,6 +2,7 @@
 from django.db import models
 from apps.accounts.models import User
 from decimal import Decimal
+from django.contrib.auth import get_user_model
 
 class PerformanceTarget(models.Model):
     employee = models.ForeignKey(User, on_delete=models.CASCADE, related_name='performance_targets')
@@ -22,7 +23,11 @@ class PerformanceTarget(models.Model):
     
     class Meta:
         db_table = 'performance_targets'
-        unique_together = ['employee', 'month']
+        ordering = ['-year', '-month', 'employee__employee_id']
+        unique_together = ('employee', 'month', 'year')
+    
+        
+
     
     def save(self, *args, **kwargs):
         self.performance_score = (

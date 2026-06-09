@@ -1,7 +1,11 @@
-# apps/accounts/serializers.py
+
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from .models import User, PasswordResetToken
+from django.contrib.auth import authenticate
+from rest_framework import serializers
+from .models import User
+
 
 class UserSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
@@ -41,11 +45,12 @@ class EmployeeCreateSerializer(serializers.ModelSerializer):
         
         # Create user
         user = User.objects.create_user(
-            username=validated_data['employee_id'],
+           employee_id=validated_data['employee_id'],
+
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            employee_id=validated_data['employee_id'],
+            
             phone=validated_data.get('phone', ''),
             department=validated_data.get('department', ''),
             position=validated_data.get('position', ''),
@@ -69,33 +74,34 @@ class EmployeeCreateSerializer(serializers.ModelSerializer):
         return user
 
 
+
+
+# apps/accounts/serializers.py
 class LoginSerializer(serializers.Serializer):
-    user_id = serializers.CharField()
+    employee_id = serializers.CharField()  # Make sure this exists
     password = serializers.CharField(write_only=True)
     
     def validate(self, data):
-        user_id = data.get('user_id')
+        employee_id = data.get('employee_id')
         password = data.get('password')
         
-        # Find user by employee_id or email
         user = None
-        if User.objects.filter(employee_id=user_id).exists():
-            user = User.objects.get(employee_id=user_id)
-        elif User.objects.filter(email=user_id).exists():
-            user = User.objects.get(email=user_id)
+        if User.objects.filter(employee_id=employee_id).exists():
+            user = User.objects.get(employee_id=employee_id)
+        elif User.objects.filter(email=employee_id).exists():
+            user = User.objects.get(email=employee_id)
         
         if not user:
-            raise serializers.ValidationError("Invalid User ID or Password")
+            raise serializers.ValidationError("Invalid Employee ID or Password")
         
         if not user.check_password(password):
-            raise serializers.ValidationError("Invalid User ID or Password")
+            raise serializers.ValidationError("Invalid Employee ID or Password")
         
         if not user.is_active:
-            raise serializers.ValidationError("Account is disabled. Contact HR.")
+            raise serializers.ValidationError("Account is disabled")
         
         data['user'] = user
         return data
-
 
 class ChangePasswordSerializer(serializers.Serializer):
     current_password = serializers.CharField(write_only=True)

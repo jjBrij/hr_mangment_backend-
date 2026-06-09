@@ -2,6 +2,7 @@
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.core.mail import send_mail
 from django.conf import settings
@@ -60,22 +61,45 @@ class LoginView(generics.GenericAPIView):
         return Response(response_data)
 
 
-class ChangePasswordView(generics.GenericAPIView):
+class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = ChangePasswordSerializer
     
     def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        
         user = request.user
+        current_password = request.data.get('current_password')
+        new_password = request.data.get('new_password')
+        confirm_password = request.data.get('confirm_password')
+        
+        # Validate input
+        if not current_password or not new_password or not confirm_password:
+            return Response(
+                {'error': 'All password fields are required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Check if new passwords match
+        if new_password != confirm_password:
+            return Response(
+                {'error': 'New passwords do not match'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Check password length
+        if len(new_password) < 6:
+            return Response(
+                {'error': 'Password must be at least 6 characters'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
         
         # Verify current password
-        if not user.check_password(serializer.validated_data['current_password']):
-            return Response({'error': 'Current password is incorrect'}, status=status.HTTP_400_BAD_REQUEST)
+        if not user.check_password(current_password):
+            return Response(
+                {'error': 'Current password is incorrect'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
         
         # Set new password
-        user.set_password(serializer.validated_data['new_password'])
+        user.set_password(new_password)
         user.must_change_password = False
         user.save()
         
@@ -84,10 +108,9 @@ class ChangePasswordView(generics.GenericAPIView):
         
         return Response({
             'message': 'Password changed successfully',
-            'refresh': str(refresh),
-            'access': str(refresh.access_token)
+            'access': str(refresh.access_token),
+            'refresh': str(refresh)
         })
-
 
 class ForgotUserIDView(generics.GenericAPIView):
     permission_classes = [AllowAny]
