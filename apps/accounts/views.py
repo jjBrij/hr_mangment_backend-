@@ -29,7 +29,6 @@ class LoginView(generics.GenericAPIView):
         
         user = serializer.validated_data['user']
         
-        # Check if password needs to be changed
         must_change_password = user.must_change_password
         
         # Create JWT tokens
@@ -123,7 +122,7 @@ class ForgotUserIDView(generics.GenericAPIView):
         email = serializer.validated_data['email']
         user = User.objects.get(email=email)
         
-        subject = 'Your User ID - HRMS'
+        subject = 'Your User ID - SHAHEED BHAGAT SINGH HEALTH AND EDUCATION'
         message = f"""
         Dear {user.get_full_name()},
         
@@ -132,7 +131,7 @@ class ForgotUserIDView(generics.GenericAPIView):
         Use this ID to login to your HRMS account.
         
         Best regards,
-        HRMS Team
+        SHAHEED BHAGAT SINGH HEALTH AND EDUCATION
         """
         
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
@@ -162,7 +161,7 @@ class ForgotPasswordView(generics.GenericAPIView):
         )
         
         reset_link = f"{settings.BACKEND_URL}/api/auth/reset-password?token={token}"
-        subject = 'Password Reset - HRMS'
+        subject = 'Password Reset - SHAHEED BHAGAT SINGH HEALTH AND EDUCATION'
         message = f"""
         Dear {user.get_full_name()},
         
@@ -174,7 +173,7 @@ class ForgotPasswordView(generics.GenericAPIView):
         If you didn't request this, please ignore this email.
         
         Best regards,
-        HRMS Team
+        SHAHEED BHAGAT SINGH HEALTH AND EDUCATION
         """
         
         send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])
