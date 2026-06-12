@@ -34,12 +34,8 @@ class LoginView(generics.GenericAPIView):
         # Create JWT tokens
         refresh = RefreshToken.for_user(user)
         
-        # Log login history
-        LoginHistory.objects.create(
-            user=user,
-            ip_address=request.META.get('REMOTE_ADDR'),
-            user_agent=request.META.get('HTTP_USER_AGENT', '')
-        )
+        
+   
         
         response_data = {
             'refresh': str(refresh),
@@ -246,3 +242,22 @@ class UpdateProfileView(generics.UpdateAPIView):
     
     def get_object(self):
         return self.request.user
+    
+
+
+def get_client_ip(request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+
+        if x_forwarded_for:
+          ip = x_forwarded_for.split(',')[0]
+        else:
+         ip = request.META.get('REMOTE_ADDR')
+
+        return ip   
+        ip_address = get_client_ip(request)
+ 
+        LoginHistory.objects.create(
+            user=user,
+            ip_address=ip_address,
+            user_agent=request.META.get('HTTP_USER_AGENT', '')
+        )    

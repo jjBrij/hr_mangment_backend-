@@ -18,9 +18,22 @@ DEBUG = False
 ALLOWED_HOSTS = [
     "employeesbshe.tech",
     "www.employeesbshe.tech",
-    "localhost",
+    "31.97.239.29",
     "127.0.0.1"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://employeesbshe.tech",
+    "https://www.employeesbshe.tech",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://employeesbshe.tech",
+    "https://www.employeesbshe.tech",
+    "http://localhost:3000",
+]
+CORS_ALLOW_CREDENTIALS = True
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -77,11 +90,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hrms_backend.wsgi.application'
 ASGI_APPLICATION = 'hrms_backend.asgi.application'
-CSRF_TRUSTED_ORIGINS = [
-    "https://employeesbshe.tech",
-    "https://www.employeesbshe.tech",
-    "htts://localhost:8000"
-]
+
 # Database
 DATABASES = {
     'default': {
@@ -145,15 +154,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# CORS settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://employeesbshe.tech",
-    "https://www.employeesbshe.tech",
-]
-CORS_ALLOW_CREDENTIALS = True
 
 # REST Framework settings
 REST_FRAMEWORK = {
